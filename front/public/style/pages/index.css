@@ -5,15 +5,17 @@
 }
 .list-context{
     color:#777;
-    padding:.5rem;
+    padding:0 .5rem;
 }
 .list-icon{
-    padding:.5rem 0;
+    padding:.6rem;
     color:#AAA;
+    display: flex;
+    align-items: center;
 }
-.list-icon span{
+.list-icon span:last-child{
     display: inline-block;
-    padding: 0 10px;
+    padding: 0 1rem 0 0.5rem;
 }
 .list-header{
     font-size: 1.1rem;

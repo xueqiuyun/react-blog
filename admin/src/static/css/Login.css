@@ -1,0 +1,11 @@
+.login-div{
+    margin-top:180px;
+    width: 400px;
+    position: absolute;
+    left:50%;
+    transform:translateX(-50%);
+}
+body{
+    background-color: #f0f0f0;
+    height:100%;
+}

@@ -1,11 +1,12 @@
 import Head from "next/head";
 import React,{useState} from 'react'
 import Link from "next/link"
-import {Row, Col , List ,Icon} from 'antd'
+import {Row, Col , List } from 'antd'
 import Header from "../components/Header";
 import Author from '../components/Author';
 import Footer from '../components/Footer';
 import '../public/style/pages/index.css';
+import { CalendarOutlined,TagOutlined} from '@ant-design/icons';
 const  ArticleList=()=> {
   const [ mylist , setMylist ] = useState(
     [
@@ -35,15 +36,14 @@ const  ArticleList=()=> {
                   </Link>
                 </div>
                 <div className="list-icon">
-                  <span>
-                    <Icon type="calendar" /> 2019-06-28
-                  </span>
-                  <span>
-                    <Icon type="folder" /> 视频教程
-                  </span>
-                  <span>
-                    <Icon type="fire" /> 5498人
-                  </span>
+                  <p>
+                    <CalendarOutlined />
+                    <span>2019-06-28</span>
+                  </p>
+                  <p>
+                    <TagOutlined />
+                    <span>vueJs</span>
+                  </p>
                 </div>
                 <div className="list-context">{item.context}</div>
               </List.Item>

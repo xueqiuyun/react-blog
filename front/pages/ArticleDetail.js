@@ -1,11 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
-import {Row, Col,Breadcrumb,Icon,Affix} from 'antd'
+import {Row, Col,Breadcrumb,Affix} from 'antd'
 import Header from '../components/Header'
 import Author from '../components/Author'
 import Footer from '../components/Footer'
 import '../public/style/pages/detail.css'
 import marked from 'marked'
+import { CalendarOutlined,TagOutlined} from '@ant-design/icons';
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
 import Tocify from '../components/tocify.tsx';
@@ -87,15 +88,14 @@ let markdown='# P01:课程介绍和环境搭建\n' +
             <div>
               <div className="detailed-title">React实战视频教程</div>
               <div className="list-icon center">
-                <span>
-                  <Icon type="calendar" /> 2019-06-28
-                </span>
-                <span>
-                  <Icon type="folder" /> 视频教程
-                </span>
-                <span>
-                  <Icon type="fire" /> 5498人
-                </span>
+                  <p>
+                     <CalendarOutlined />
+                     <span>2019-06-28</span>
+                  </p>
+                  <p>
+                     <TagOutlined />
+                     <span>vueJs</span>
+                  </p>
               </div>
               <div className="detailed-content"
                    dangerouslySetInnerHTML={{__html:html}}>

@@ -1,7 +1,7 @@
 
 import {Avatar,Divider} from 'antd'
 import '../public/style/components/author.css';
-import { WeiboCircleOutlined } from '@ant-design/icons';
+import { GithubOutlined,QqOutlined,WechatOutlined } from '@ant-design/icons';
 
 
 const Author =()=>{
@@ -12,9 +12,9 @@ const Author =()=>{
             <div className="author-introduction">
                 前端开发，Never quit and never stop
                 <Divider>社交账号</Divider>
-                <Avatar size={32} icon={<WeiboCircleOutlined />} className="account"  />
-                <Avatar size={32} icon="qq"  className="account" />
-                <Avatar size={32} icon="wechat"  className="account"  />
+                <Avatar size={32} icon={<GithubOutlined />} className="account"  />
+                <Avatar size={32} icon={<QqOutlined />}  className="account" />
+                <Avatar size={32} icon={<WechatOutlined />}  className="account"  />
 
             </div>
         </div>
