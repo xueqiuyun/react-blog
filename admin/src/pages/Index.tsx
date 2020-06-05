@@ -52,7 +52,7 @@ function AdminIndex(props:any) {
         </Menu>
       </Sider>
       <Layout>
-        {/* <Header style={{ background: "#fff", padding: 0 }} /> */}
+        <Header style={{ background: "#fff", padding: 0 }} />
         <Content style={{ margin: "0 16px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>后台管理</Breadcrumb.Item>
