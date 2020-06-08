@@ -2,7 +2,8 @@ import React,{useState} from 'react';
 import marked from 'marked';
 import '../static/css/AddArticle.css'
 import { Row, Col ,Input, Select ,Button ,DatePicker } from 'antd'
-
+import hljs from "highlight.js";
+import 'highlight.js/styles/monokai-sublime.css';
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -27,6 +28,9 @@ function AddArticle(){
         breaks: false,
         smartLists: true,
         smartypants: false,
+        highlight: function (code:any) {
+            return hljs.highlightAuto(code).value;
+        }
     }); 
 
     const changeContent = (e:any)=>{

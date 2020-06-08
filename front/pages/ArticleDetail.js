@@ -5,13 +5,16 @@ import Header from '../components/Header'
 import Author from '../components/Author'
 import Footer from '../components/Footer'
 import '../public/style/pages/detail.css'
+//markdown语法高亮
 import marked from 'marked'
-import { CalendarOutlined,TagOutlined} from '@ant-design/icons';
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
+import { CalendarOutlined,TagOutlined} from '@ant-design/icons';
 import Tocify from '../components/tocify.tsx';
 const ArticleDetail = () => {
   const renderer = new marked.Renderer();
+  console.log(renderer);
+  console.log(marked.setOptions);
   const tocify = new Tocify()
   renderer.heading = function(text, level, raw) {
       const anchor = tocify.add(text, level);
@@ -51,7 +54,7 @@ let markdown='# P01:课程介绍和环境搭建\n' +
 '> aaaaaaaaa\n' +
 '>> bbbbbbbbb\n' +
 '>>> cccccccccc\n\n'+
-'``` var a=11; ```'
+'``` var a=11;var a=[]; ```'
   marked.setOptions({
       renderer: renderer, 
       gfm: true,

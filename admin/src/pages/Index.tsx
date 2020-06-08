@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu, Breadcrumb,Avatar } from "antd";
 import {
   HeartOutlined,
   CopyOutlined,
@@ -22,12 +22,13 @@ function AdminIndex(props:any) {
     setCollapsed(collapsed);
   };
   const handleClickArticle = (e:any)=>{
+      console.log(e);
       props.history.push(e.key);
   }
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
-        <div className="logo" />
+        <div className="logo"></div>
         <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline" onClick={handleClickArticle}>
           <Menu.Item key="1">
             <HomeOutlined />
@@ -52,18 +53,24 @@ function AdminIndex(props:any) {
         </Menu>
       </Sider>
       <Layout>
-        <Header style={{ background: "#fff", padding: 0 }} />
-        <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>后台管理</Breadcrumb.Item>
-            <Breadcrumb.Item>工作台</Breadcrumb.Item>
-          </Breadcrumb>
-          <div style={{ padding: 24, background: "#fff", minHeight: 360 }}>
+        <Header style={{ background: "#fff", padding:"0 15px" ,marginBottom:"10px" }}>
+          <div className="header">
+              <Breadcrumb style={{ margin: "0" }}>
+                <Breadcrumb.Item>后台管理</Breadcrumb.Item>
+                <Breadcrumb.Item>工作台</Breadcrumb.Item>
+              </Breadcrumb>
+              <div> 
+                <Avatar size={40}   shape="square" src="http://101.132.120.95/images/headPhoto.jpg" />
+              </div>
+          </div>  
+        </Header>
+        <Content style={{ margin: "0" }}>
+          <div style={{ padding:15, background: "#fff", minHeight: 360 }}>
             <Route path="/index/add" exact  component={AddArticle} />
             <Route path="/index/list" exact  component={ArticleList} />
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>xqy'admin</Footer>
+        <Footer style={{ textAlign: "center"}}>xqy'admin</Footer>
       </Layout>
     </Layout>
   );
