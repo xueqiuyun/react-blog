@@ -31,12 +31,12 @@ module.exports = {
      * [获取文章列表]
      */
     async articlelist(ctx) {
-        const courses = await articleModel.find();
-        if (courses) {
+        const list = await articleModel.find();
+        if (list) {
           ctx.status = 200;
           ctx.body = {
             code: 1,
-            data: courses
+            data: list
           }
         }
     }
