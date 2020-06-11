@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import marked from 'marked';
 import '../static/css/AddArticle.css'
 import { Row, Col ,Input, Select ,Button ,DatePicker } from 'antd'
+//markdown语法高亮
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
 const { Option } = Select;
@@ -51,12 +52,11 @@ function AddArticle(){
                         <Row gutter={10} >
                             <Col span={20}>
                                 <Input 
-                                    placeholder="博客标题" 
-                                    size="large" />
+                                    placeholder="博客标题" />
                             </Col>
                             <Col span={4}>
                                 &nbsp;
-                                <Select defaultValue="Sign Up" size="large">
+                                <Select defaultValue="Sign Up">
                                     <Option value="Sign Up">视频教程</Option>
                                 </Select>
                             </Col>
@@ -76,7 +76,6 @@ function AddArticle(){
                                 <div className="show-html"
                                      dangerouslySetInnerHTML = {{__html:markdownContent}}>
                                 </div>
-
                             </Col>
                         </Row>  
 
@@ -85,14 +84,14 @@ function AddArticle(){
                 <Col span={6}>
                     <Row>
                         <Col span={24}>
-                                <Button  size="large">暂存文章</Button>&nbsp;
-                                <Button type="primary" size="large">发布文章</Button>
+                                <Button>暂存文章</Button>&nbsp;
+                                <Button type="primary">发布文章</Button>
                                 <br/>
                         </Col>
                         <Col span={24}>
                             <br/>
                             <TextArea 
-                                rows={4} 
+                                rows={6} 
                                 placeholder="文章简介"
                                 onChange={changeIntroduce}
                                 value={introducemd}
@@ -107,16 +106,14 @@ function AddArticle(){
                         <Col span={12}>
                             <div className="date-select">
                                 <DatePicker
-                                    placeholder="发布日期"
-                                    size="large"  
+                                    placeholder="发布日期" 
                                 />
                             </div>
                         </Col>
                         <Col span={12}>
                             <div className="date-select">
                                 <DatePicker
-                                    placeholder="修改日期"
-                                    size="large"  
+                                    placeholder="修改日期" 
                                 />
                             </div>
                         </Col>
