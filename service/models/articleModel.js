@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 //创建一个和集合相关的schema对象  类似于表头
 var Schema = mongoose.Schema;
-
+//创建文章模型
 var articleSchema = new Schema({
     //文章标题
     title: {

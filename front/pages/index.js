@@ -1,22 +1,17 @@
 import Head from "next/head";
 import React,{useState} from 'react'
-
+import Link from "next/link"
 import {Row, Col , List ,Icon} from 'antd'
 import Header from "../components/Header";
 import Author from '../components/Author';
 import Footer from '../components/Footer';
 import { CalendarOutlined,TagOutlined} from '@ant-design/icons';
+import axios from 'axios';
 
 import '../public/style/pages/index.css';
-const  Home=()=> {
-  const [ mylist , setMylist ] = useState(
-    [
-      {title:'生活随记',context:'“海纳百川，有容乃大”。大格局是一种智慧，大智若愚；大格局是一种境界，大勇若怯。 格局需要心胸，眼界需要锻练，心里有贪念不可怕，怕你只贪念眼前小实惠而看不到远处的独特的好风景，不贪念一时与眼下的人才能达到享受大命格的格局。给别人方便就是给自己方便，格局大了，自己结局就好了~'},
-      {title:'生活随记',context:'“海纳百川，有容乃大”。大格局是一种智慧，大智若愚；大格局是一种境界，大勇若怯。 格局需要心胸，眼界需要锻练，心里有贪念不可怕，怕你只贪念眼前小实惠而看不到远处的独特的好风景，不贪念一时与眼下的人才能达到享受大命格的格局。给别人方便就是给自己方便，格局大了，自己结局就好了~'},
-      {title:'生活随记',context:'“海纳百川，有容乃大”。大格局是一种智慧，大智若愚；大格局是一种境界，大勇若怯。 格局需要心胸，眼界需要锻练，心里有贪念不可怕，怕你只贪念眼前小实惠而看不到远处的独特的好风景，不贪念一时与眼下的人才能达到享受大命格的格局。给别人方便就是给自己方便，格局大了，自己结局就好了~'},
-      {title:'生活随记',context:'“海纳百川，有容乃大”。大格局是一种智慧，大智若愚；大格局是一种境界，大勇若怯。 格局需要心胸，眼界需要锻练，心里有贪念不可怕，怕你只贪念眼前小实惠而看不到远处的独特的好风景，不贪念一时与眼下的人才能达到享受大命格的格局。给别人方便就是给自己方便，格局大了，自己结局就好了~'}
-    ]
-  )
+const  Home=(list)=> {
+  console.log(list);
+  const [ mylist , setMylist ] = useState(list.data)
   return (
     <>
       <Head>
@@ -31,18 +26,22 @@ const  Home=()=> {
             dataSource={mylist}
             renderItem={(item) => (
               <List.Item>
-                <div className="list-title">{item.title}</div>
+                <div className="list-title">
+                  <Link href={{pathname:'/ArticleDetail',query:{id:item._id}}}>
+                    <a>{item.title}</a>
+                  </Link>
+                </div>
                 <div className="list-icon">
                   <p>
                      <CalendarOutlined />
-                     <span>2019-06-28</span>
+                     <span>{item.addTime}</span>
                   </p>
                   <p>
                      <TagOutlined />
                      <span>vueJs</span>
                   </p>
                 </div>
-                <div className="list-context">{item.context}</div>
+                <div className="list-context">{item.introduce}</div>
               </List.Item>
             )}
           />
@@ -55,4 +54,9 @@ const  Home=()=> {
     </>
   );
 }
+Home.getInitialProps = async ()=>{
+  const res=await axios('http://127.0.0.1:3200/article/list');
+  return { data: res.data.data }
+}
+
 export default Home;

@@ -11,50 +11,50 @@ import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
 import { CalendarOutlined,TagOutlined} from '@ant-design/icons';
 import Tocify from '../components/tocify.tsx';
-const ArticleDetail = () => {
+import axios from "axios";
+const ArticleDetail = (detail) => {
+  const data=detail.data;
   const renderer = new marked.Renderer();
-  console.log(renderer);
-  console.log(marked.setOptions);
   const tocify = new Tocify()
   renderer.heading = function(text, level, raw) {
       const anchor = tocify.add(text, level);
       return `<a id="${anchor}" href="#${anchor}" class="anchor-fix"><h${level}>${text}</h${level}></a>\n`;
   };
  
-let markdown='# P01:课程介绍和环境搭建\n' +
-'[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n' +
-'> Mditor 是一个简洁、易于集成、方便扩展、期望舒服的编写 markdown 的编辑器，仅此而已... \n\n' +
- '**这是加粗的文字**\n\n' +
-'*这是倾斜的文字*`\n\n' +
-'***这是斜体加粗的文字***\n\n' +
-'~~这是加删除线的文字~~ \n\n'+
-'\`console.log(111)\` \n\n'+
-'# p02:来个Hello World 初始Vue3.0\n' +
-'> aaaaaaaaa\n' +
-'>> bbbbbbbbb\n' +
-'>>> cccccccccc\n'+
-'***\n\n\n' +
-'# p03:Vue3.0基础知识讲解\n' +
-'> aaaaaaaaa\n' +
-'>> bbbbbbbbb\n' +
-'>>> cccccccccc\n\n'+
-'# p04:Vue3.0基础知识讲解\n' +
-'> aaaaaaaaa\n' +
-'>> bbbbbbbbb\n' +
-'>>> cccccccccc\n\n'+
-'#5 p05:Vue3.0基础知识讲解\n' +
-'> aaaaaaaaa\n' +
-'>> bbbbbbbbb\n' +
-'>>> cccccccccc\n\n'+
-'# p06:Vue3.0基础知识讲解\n' +
-'> aaaaaaaaa\n' +
-'>> bbbbbbbbb\n' +
-'>>> cccccccccc\n\n'+
-'# p07:Vue3.0基础知识讲解\n' +
-'> aaaaaaaaa\n' +
-'>> bbbbbbbbb\n' +
-'>>> cccccccccc\n\n'+
-'``` var a=11;var a=[]; ```'
+// let markdown='# P01:课程介绍和环境搭建\n' +
+// '[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n' +
+// '> Mditor 是一个简洁、易于集成、方便扩展、期望舒服的编写 markdown 的编辑器，仅此而已... \n\n' +
+//  '**这是加粗的文字**\n\n' +
+// '*这是倾斜的文字*`\n\n' +
+// '***这是斜体加粗的文字***\n\n' +
+// '~~这是加删除线的文字~~ \n\n'+
+// '\`console.log(111)\` \n\n'+
+// '# p02:来个Hello World 初始Vue3.0\n' +
+// '> aaaaaaaaa\n' +
+// '>> bbbbbbbbb\n' +
+// '>>> cccccccccc\n'+
+// '***\n\n\n' +
+// '# p03:Vue3.0基础知识讲解\n' +
+// '> aaaaaaaaa\n' +
+// '>> bbbbbbbbb\n' +
+// '>>> cccccccccc\n\n'+
+// '# p04:Vue3.0基础知识讲解\n' +
+// '> aaaaaaaaa\n' +
+// '>> bbbbbbbbb\n' +
+// '>>> cccccccccc\n\n'+
+// '#5 p05:Vue3.0基础知识讲解\n' +
+// '> aaaaaaaaa\n' +
+// '>> bbbbbbbbb\n' +
+// '>>> cccccccccc\n\n'+
+// '# p06:Vue3.0基础知识讲解\n' +
+// '> aaaaaaaaa\n' +
+// '>> bbbbbbbbb\n' +
+// '>>> cccccccccc\n\n'+
+// '# p07:Vue3.0基础知识讲解\n' +
+// '> aaaaaaaaa\n' +
+// '>> bbbbbbbbb\n' +
+// '>>> cccccccccc\n\n'+
+// '``` var a=11;var a=[]; ```'
   marked.setOptions({
       renderer: renderer, 
       gfm: true,
@@ -68,7 +68,7 @@ let markdown='# P01:课程介绍和环境搭建\n' +
           return hljs.highlightAuto(code).value;
       }
     }); 
-    let html = marked(markdown);
+    let html = marked(data.article_content);
   return (
     <>
       <Head>
@@ -89,11 +89,11 @@ let markdown='# P01:课程介绍和环境搭建\n' +
             </div>
 
             <div>
-              <div className="detailed-title">React实战视频教程</div>
+            <div className="detailed-title">{data.title}</div>
               <div className="list-icon center">
                   <p>
                      <CalendarOutlined />
-                     <span>2019-06-28</span>
+                     <span>{data.addTime}</span>
                   </p>
                   <p>
                      <TagOutlined />
@@ -124,9 +124,10 @@ let markdown='# P01:课程介绍和环境搭建\n' +
     </>
   );
 }
-
-    
-
-
-
+ArticleDetail.getInitialProps = async(context)=>{
+  console.log(context.query.id);
+  let id =context.query.id;
+  const res=await axios(`http://127.0.0.1:3200/article/list/${id}`);
+  return { data: res.data.data }
+}
 export default ArticleDetail

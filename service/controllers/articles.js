@@ -9,21 +9,21 @@ module.exports = {
         ctx.status = 200;
         if (!title || !type_id || !article_content || !introduce) {
             ctx.body = {
-            code: 0,
-            msg: '缺少必要参数！'
+                code: 0,
+                msg: '缺少必要参数！'
             }
             return;
         }
         const result = await articleModel.insertMany({title,type_id,article_content,introduce,addTime});
         if (result) {
             ctx.body = {
-            code: 1,
-            msg: '发布成功！'
+                code: 1,
+                msg: '发布成功！'
             }
         } else {
             ctx.body = {
-            code: 0,
-            msg: '发布失败！'
+                code: 0,
+                msg: '发布失败！'
             }
         }
     },
@@ -38,6 +38,25 @@ module.exports = {
             code: 1,
             data: list
           }
+        }
+    },
+    /**
+     * [根据文章id查出文章详情]
+     */
+    async getArticleById(ctx) {
+        const _id = ctx.params.id;
+        const articleDetail = await articleModel.findOne({_id});
+        if (articleDetail) {
+          ctx.status = 200;
+          ctx.body = {
+            code: 1,
+            data: articleDetail
+          }
+        }else {
+            ctx.body = {
+              code: 0,
+              msg: '获取文章失败'
+            };
         }
     }
 }

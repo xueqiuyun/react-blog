@@ -1,6 +1,6 @@
 import React from 'react'
 import '../public/style/components/header.css'
-// import { HomeOutlined} from '@ant-design/icons';
+import { HomeOutlined} from '@ant-design/icons';
 import {Row,Col, Menu} from 'antd'
 const Header = () => (
   <div className="header">
@@ -13,7 +13,7 @@ const Header = () => (
         <Col className="memu-div" xs={0} sm={0} md={14} lg={8} xl={6}>
             <Menu  mode="horizontal">
                 <Menu.Item key="home">
-                    {/* <HomeOutlined /> */}
+                    <HomeOutlined />
                     首页
                 </Menu.Item>
                 <Menu.Item key="video">
