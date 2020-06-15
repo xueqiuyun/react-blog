@@ -28,9 +28,9 @@ function AdminIndex(props:any) {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
-        <div className="logo"></div>
+        <div className="logo">xqy'admin</div>
         <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline" onClick={handleClickArticle}>
-          <Menu.Item key="1">
+          <Menu.Item key="/index">
             <HomeOutlined />
             <span>首页</span>
           </Menu.Item>

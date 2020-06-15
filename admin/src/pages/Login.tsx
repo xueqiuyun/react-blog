@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Button,Spin,Card,Input} from 'antd';
+import { Button,Spin,Card,Input, message} from 'antd';
 import '../static/css/Login.css';
 import { UserOutlined,KeyOutlined } from '@ant-design/icons';
 function Login(){
@@ -9,6 +9,15 @@ function Login(){
 
     const checkLogin=()=>{
         setIsLoading(true);
+        //校验数据
+        if(!userName){
+            message.error('用户名不能为空')
+            return false
+        }else if(!password){
+            message.error('密码不能为空')
+            return false
+        }
+        
         setTimeout(()=>{
             setIsLoading(false)
         },1000)

@@ -1,5 +1,5 @@
 const articleModel=require('../models/articleModel');
-
+const moment = require('moment');
 module.exports = {
     /**
      * [发布文章]
@@ -7,7 +7,7 @@ module.exports = {
     async publishArticle(ctx){
         let {title,type_id,article_content,introduce,addTime} = ctx.request.body;
         ctx.status = 200;
-        if (!title || !type_id || !article_content || !introduce) {
+        if (!title || !type_id || !article_content || !introduce ) {
             ctx.body = {
                 code: 0,
                 msg: '缺少必要参数！'
