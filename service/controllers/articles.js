@@ -1,5 +1,4 @@
 const articleModel=require('../models/articleModel');
-const moment = require('moment');
 module.exports = {
     /**
      * [发布文章]
@@ -14,7 +13,13 @@ module.exports = {
             }
             return;
         }
-        const result = await articleModel.insertMany({title,type_id,article_content,introduce,addTime});
+        const result = await articleModel.insertMany({
+                title,
+                type_id,
+                article_content,
+                introduce,
+                addTime
+            });
         if (result) {
             ctx.body = {
                 code: 1,

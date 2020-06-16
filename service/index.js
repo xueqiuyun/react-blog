@@ -9,9 +9,9 @@ const userRoute=require('./routes/userRoute');
 const cors = require('koa-cors');
 const bodyParser = require('koa-bodyparser');
 app.use(bodyParser())
-   .use(cors())
-   .use(articlesRoute.routes()).use(articlesRoute.allowedMethods())
-   .use(userRoute.routes()).use(userRoute.allowedMethods())
-app.listen('3200',()=>{
-    console.log('service start');
-})
+    .use(cors())
+    .use(articlesRoute.routes()).use(articlesRoute.allowedMethods())
+    .use(userRoute.routes()).use(userRoute.allowedMethods())
+    .listen('3200',()=>{
+        console.log('service start');
+    })
