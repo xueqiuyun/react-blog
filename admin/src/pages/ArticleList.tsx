@@ -1,9 +1,18 @@
 import React,{useState,useEffect} from 'react';
-// import '../static/css/ArticleList.css'
+import '../static/css/ArticleList.css'
 import { List ,Row ,Col , Modal ,message ,Button,Switch} from 'antd';
+import {getArticleList} from "../utils/api"
 const { confirm } = Modal;
 function ArticleList(){
-    const [list,setList]=useState([])
+    const [list,setList]=useState([] as any[]);
+    useEffect(()=>{
+        getList();
+    },[]);
+    const getList=()=>{
+        getArticleList().then((res)=>{
+            setList(res.data);
+        })
+    }
     return (
         <div>
              <List
@@ -25,11 +34,10 @@ function ArticleList(){
                             <b>浏览量</b>
                         </Col>
 
-                        <Col span={4}>
+                        <Col span={4} style={{textAlign:"center"}}>
                             <b>操作</b>
                         </Col>
                     </Row>
-
                 }
                 bordered
                 dataSource={list}
@@ -37,22 +45,22 @@ function ArticleList(){
                     <List.Item>
                         <Row className="list-div">
                             <Col span={8}>
-                                {/* {item.title} */}
+                                {item.title}
                             </Col>
                             <Col span={3}>
-                             {/* {item.typeName} */}
+                               {item.type_id}
                             </Col>
                             <Col span={3}>
-                                {/* {item.addTime} */}
+                                {item.addTime}
                             </Col>
                             <Col span={3}>
-                                {/* 共<span>{item.part_count}</span>集 */}
+                                {item.addTime}
                             </Col>
                             <Col span={3}>
-                              {/* {item.view_count} */}
+                              {item.addTime}
                             </Col>
 
-                            <Col span={4}>
+                            <Col span={4} style={{textAlign:"center"}}>
                               <Button type="primary" >修改</Button>&nbsp;
                               <Button >删除 </Button>
                             </Col>

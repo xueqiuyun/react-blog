@@ -20,17 +20,18 @@ module.exports = {
     //注册
     async getReg(ctx) {
       let {userName,password} = ctx.request.body;
-      const useInfo = await userModel.insertMany({userName,password});
-      if (useInfo) {
+      const findUser= await userModel.findOne({userName});    
+      if (findUser) {
         ctx.status = 200;
         ctx.body = {
           code: 1,
-          msg:'注册成功'
+          msg:'已存在该用户哦'
         }
       }else{
+          await userModel.insertMany({userName,password});
           ctx.body = {
-              code: 0,
-              msg:'注册失败'
+              code: 1,
+              msg:'注册成功'
           }
       }
   },
