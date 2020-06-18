@@ -10,5 +10,7 @@ const article_controller = require('../controllers/articles.js');
 router.post('/add',article_controller.publishArticle)
       .get('/list',article_controller.articlelist)
       .get('/list/:id',article_controller.getArticleById)
+      .get('/type',article_controller.getArticleType)
+      .post('/addType',article_controller.addArticleType)
 
 module.exports = router;

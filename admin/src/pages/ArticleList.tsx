@@ -8,10 +8,9 @@ function ArticleList(){
     useEffect(()=>{
         getList();
     },[]);
-    const getList=()=>{
-        getArticleList().then((res)=>{
-            setList(res.data);
-        })
+    const getList=async()=>{
+        let res=await getArticleList();
+        setList(res.data);
     }
     return (
         <div>

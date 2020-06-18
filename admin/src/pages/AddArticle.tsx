@@ -1,10 +1,11 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import marked from 'marked';
 import '../static/css/AddArticle.css'
 import { Row, Col ,Input, Select ,Button ,DatePicker } from 'antd'
 //markdown语法高亮
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
+import {getArticleType} from "../utils/api"
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -19,7 +20,6 @@ function AddArticle(){
     const [updateDate,setUpdateDate] = useState() //修改日志的日期
     const [typeInfo ,setTypeInfo] = useState([]) // 文章类别信息
     const [selectedType,setSelectType] = useState(1) //选择的文章类别
-
     marked.setOptions({
         renderer: marked.Renderer(),
         gfm: true,
@@ -33,6 +33,13 @@ function AddArticle(){
             return hljs.highlightAuto(code).value;
         }
     }); 
+    useEffect(()=>{
+        getTypeInfo();
+    },[]);
+    const getTypeInfo = async() => {
+        let data =await getArticleType();
+        setTypeInfo(data);
+    };
 
     const changeContent = (e:any)=>{
         setArticleContent(e.target.value)
@@ -57,7 +64,7 @@ function AddArticle(){
                             <Col span={4}>
                                 &nbsp;
                                 <Select defaultValue="Sign Up">
-                                    <Option value="Sign Up">视频教程</Option>
+                                    <Option value="Sign Up">vuejs</Option>
                                 </Select>
                             </Col>
                         </Row>

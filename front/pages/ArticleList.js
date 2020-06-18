@@ -7,15 +7,9 @@ import Author from '../components/Author';
 import Footer from '../components/Footer';
 import '../public/style/pages/index.css';
 import { CalendarOutlined,TagOutlined} from '@ant-design/icons';
-const  ArticleList=()=> {
-  const [ mylist , setMylist ] = useState(
-    [
-      {title:'生活随记',context:'“海纳百川，有容乃大”。大格局是一种智慧，大智若愚；大格局是一种境界，大勇若怯。 格局需要心胸，眼界需要锻练，心里有贪念不可怕，怕你只贪念眼前小实惠而看不到远处的独特的好风景，不贪念一时与眼下的人才能达到享受大命格的格局。给别人方便就是给自己方便，格局大了，自己结局就好了~'},
-      {title:'生活随记',context:'“海纳百川，有容乃大”。大格局是一种智慧，大智若愚；大格局是一种境界，大勇若怯。 格局需要心胸，眼界需要锻练，心里有贪念不可怕，怕你只贪念眼前小实惠而看不到远处的独特的好风景，不贪念一时与眼下的人才能达到享受大命格的格局。给别人方便就是给自己方便，格局大了，自己结局就好了~'},
-      {title:'生活随记',context:'“海纳百川，有容乃大”。大格局是一种智慧，大智若愚；大格局是一种境界，大勇若怯。 格局需要心胸，眼界需要锻练，心里有贪念不可怕，怕你只贪念眼前小实惠而看不到远处的独特的好风景，不贪念一时与眼下的人才能达到享受大命格的格局。给别人方便就是给自己方便，格局大了，自己结局就好了~'},
-      {title:'生活随记',context:'“海纳百川，有容乃大”。大格局是一种智慧，大智若愚；大格局是一种境界，大勇若怯。 格局需要心胸，眼界需要锻练，心里有贪念不可怕，怕你只贪念眼前小实惠而看不到远处的独特的好风景，不贪念一时与眼下的人才能达到享受大命格的格局。给别人方便就是给自己方便，格局大了，自己结局就好了~'}
-    ]
-  )
+import servicePath from '../config/apiUrl';
+const  ArticleList=(list)=> {
+  const [ mylist , setMylist ] = useState(list.data);
   return (
     <>
       <Head>
@@ -57,6 +51,10 @@ const  ArticleList=()=> {
       <Footer />
     </>
   );
+}
+ArticleList.getInitialProps = async ()=>{
+  const res=await axios(servicePath.getArticleList);
+  return { data: res.data.data }
 }
 export default ArticleList;
 

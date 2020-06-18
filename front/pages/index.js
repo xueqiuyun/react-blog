@@ -1,13 +1,13 @@
 import Head from "next/head";
 import React,{useState} from 'react'
 import Link from "next/link"
-import {Row, Col , List ,Icon} from 'antd'
+import {Row, Col , List} from 'antd'
 import Header from "../components/Header";
 import Author from '../components/Author';
 import Footer from '../components/Footer';
 import { CalendarOutlined,TagOutlined} from '@ant-design/icons';
 import axios from 'axios';
-
+import servicePath from '../config/apiUrl';
 import '../public/style/pages/index.css';
 const  Home=(list)=> {
   console.log(list);
@@ -55,7 +55,7 @@ const  Home=(list)=> {
   );
 }
 Home.getInitialProps = async ()=>{
-  const res=await axios('http://127.0.0.1:3200/article/list');
+  const res=await axios(servicePath.getArticleList);
   return { data: res.data.data }
 }
 

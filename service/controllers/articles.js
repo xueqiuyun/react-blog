@@ -1,8 +1,7 @@
 const articleModel=require('../models/articleModel');
+const articleTypeModel=require('../models/articleTypeModel');
 module.exports = {
-    /**
-     * [发布文章]
-     */
+    // [发布文章]
     async publishArticle(ctx){
         let {title,type_id,article_content,introduce,addTime} = ctx.request.body;
         ctx.status = 200;
@@ -32,9 +31,7 @@ module.exports = {
             }
         }
     },
-    /**
-     * [获取文章列表]
-     */
+    // [获取文章列表]
     async articlelist(ctx) {
         const list = await articleModel.find();
         if (list) {
@@ -45,9 +42,7 @@ module.exports = {
           }
         }
     },
-    /**
-     * [根据文章id查出文章详情]
-     */
+    //[根据文章id查出文章详情]
     async getArticleById(ctx) {
         const _id = ctx.params.id;
         const articleDetail = await articleModel.findOne({_id});
@@ -63,5 +58,28 @@ module.exports = {
               msg: '获取文章失败'
             };
         }
-    }
+    },
+    //[获取文章分类]
+    async getArticleType(ctx) {
+        const typeList = await articleTypeModel.find();
+        if (typeList) {
+          ctx.status = 200;
+          ctx.body = {
+            code: 1,
+            data: typeList
+          }
+        }
+    },
+    //[增加文章分类]
+    async addArticleType(ctx) {
+        let {type_name,type_id} = ctx.request.body;
+        const addType = await articleTypeModel.insertMany({type_name,type_id});
+        if (addType) {
+          ctx.status = 200;
+          ctx.body = {
+            code: 1,
+            msg:"增加分类成功"
+          }
+        }
+    },
 }
