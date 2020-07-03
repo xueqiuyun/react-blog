@@ -18,7 +18,7 @@ const Header = () => (
                 </Menu.Item>
                 <Menu.Item key="video">
                     {/* <Icon type="youtube" /> */}
-                    文章
+                    技术
                 </Menu.Item>
                 <Menu.Item key="life">
                     {/* <Icon type="smile" /> */}

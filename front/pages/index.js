@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React,{useState} from 'react'
 import Link from "next/link"
-import {Row, Col , List} from 'antd'
+import {Row, Col , List,BackTop} from 'antd'
 import Header from "../components/Header";
 import Author from '../components/Author';
 import Footer from '../components/Footer';
@@ -51,6 +51,7 @@ const  Home=(list)=> {
         </Col>
       </Row>
       <Footer />
+      <BackTop />
     </>
   );
 }

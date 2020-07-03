@@ -1,5 +1,7 @@
 const articleModel=require('../models/articleModel');
 const articleTypeModel=require('../models/articleTypeModel');
+//格式化日期
+const moment = require('moment');
 module.exports = {
     // [发布文章]
     async publishArticle(ctx){
@@ -33,7 +35,7 @@ module.exports = {
     },
     // [获取文章列表]
     async articlelist(ctx) {
-        const list = await articleModel.find();
+        const list = await articleModel.find().sort({addTime:-1});
         if (list) {
           ctx.status = 200;
           ctx.body = {
@@ -81,5 +83,35 @@ module.exports = {
             msg:"增加分类成功"
           }
         }
+    },
+    //[更新文章]
+    async updateArticle(ctx) {
+      let {_id,title,type_id,article_content,introduce,addTime}=ctx.request.body;
+      const result = await articleModel.updateOne({_id},{
+          title,
+          type_id,
+          article_content,
+          introduce,
+          addTime:addTime || moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
+      });
+      if (result) {
+        ctx.status = 200;
+        ctx.body = {
+          code: 1,
+          msg:"更新成功"
+        }
+      }
+    },
+     //[删除文章]
+     async deleteArticle(ctx) {
+      const _id = ctx.params.id;
+      const result = await articleModel.deleteOne({_id});
+      if (result) {
+        ctx.status = 200;
+        ctx.body = {
+          code: 1,
+          msg:"删除成功"
+        }
+      }
     },
 }

@@ -22,7 +22,6 @@ function AdminIndex(props:any) {
     setCollapsed(collapsed);
   };
   const handleClickArticle = (e:any)=>{
-      console.log(e);
       props.history.push(e.key);
   }
   return (
@@ -67,6 +66,7 @@ function AdminIndex(props:any) {
         <Content style={{ margin: "0" }}>
           <div style={{ padding:15, background: "#fff", minHeight: 360 }}>
             <Route path="/index/add" exact  component={AddArticle} />
+            <Route path="/index/add/:id" exact  component={AddArticle} />
             <Route path="/index/list" exact  component={ArticleList} />
           </div>
         </Content>

@@ -49,8 +49,8 @@ const ArticleDetail = (detail) => {
                 <Breadcrumb.Item>
                   <a href="/">首页</a>
                 </Breadcrumb.Item>
-                <Breadcrumb.Item>文章</Breadcrumb.Item>
-                <Breadcrumb.Item>xxxx</Breadcrumb.Item>
+                <Breadcrumb.Item>技术</Breadcrumb.Item>
+                <Breadcrumb.Item>{data.title}</Breadcrumb.Item>
               </Breadcrumb>
             </div>
 

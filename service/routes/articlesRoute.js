@@ -12,5 +12,7 @@ router.post('/add',article_controller.publishArticle)
       .get('/list/:id',article_controller.getArticleById)
       .get('/type',article_controller.getArticleType)
       .post('/addType',article_controller.addArticleType)
+      .post('/update',article_controller.updateArticle)
+      .get('/delete/:id',article_controller.deleteArticle)
 
 module.exports = router;
