@@ -16,6 +16,9 @@ var articleSchema = new Schema({
         type: String, 
         required: true 
     }, 
+    type_name:{
+        type:String
+    },
     //文章主体内容
     article_content: { 
         type: String, 

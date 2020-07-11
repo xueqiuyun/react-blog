@@ -36,7 +36,15 @@ module.exports = {
     // [获取文章列表]
     async articlelist(ctx) {
         const list = await articleModel.find().sort({addTime:-1});
-        if (list) {
+        const typeList=await articleTypeModel.find();
+        const obj={};
+        typeList.forEach((item)=>{
+            obj[item.type_id]=item.type_name;
+        });
+        if (list && obj) {
+          list.forEach((item)=>{
+             item.type_name=obj[item.type_id];
+          })
           ctx.status = 200;
           ctx.body = {
             code: 1,

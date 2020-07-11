@@ -38,7 +38,7 @@ const  Home=(list)=> {
                   </p>
                   <p>
                      <TagOutlined />
-                     <span>vueJs</span>
+                    <span>{item.type_name}</span>
                   </p>
                 </div>
                 <div className="list-context">{item.introduce}</div>
