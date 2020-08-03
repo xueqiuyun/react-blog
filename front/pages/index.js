@@ -10,7 +10,6 @@ import axios from 'axios';
 import servicePath from '../config/apiUrl';
 import '../public/style/pages/index.css';
 const  Home=(list)=> {
-  console.log(list);
   const [ mylist , setMylist ] = useState(list.data)
   return (
     <>

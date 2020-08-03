@@ -28,6 +28,6 @@
   }
   .comm-main{
     margin-top: .5rem;
-    min-height:100%;
+    /* min-height:100%; */
     flex: 1;
   }

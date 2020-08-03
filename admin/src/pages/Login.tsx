@@ -2,12 +2,13 @@ import React,{useState} from 'react';
 import { Button,Spin,Card,Input, message} from 'antd';
 import '../static/css/Login.css';
 import { UserOutlined,KeyOutlined } from '@ant-design/icons';
-function Login(){
+import {loginApi} from "../utils/api"
+function Login(props:any){
     const [userName , setUserName] = useState('');
     const [password , setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    const checkLogin=()=>{
+    const checkLogin=async()=>{
         setIsLoading(true);
         //校验数据
         if(!userName){
@@ -17,10 +18,16 @@ function Login(){
             message.error('密码不能为空')
             return false
         }
-        
-        setTimeout(()=>{
-            setIsLoading(false)
-        },1000)
+        let data=await  loginApi({userName,password});
+        setIsLoading(false);
+        if(data.code==1){
+            message.success("登录成功");
+            setTimeout(()=>{
+                props.history.push("/index");
+            },1000)
+        }else{
+            message.success("登录失败");
+        }
     }
     return(
         <div className="login-div">

@@ -26,3 +26,7 @@ export const updateArticle = params =>{
 export const deleteArticle = (id) =>{
     return get(`${servicePath.deleteArticle}/${id}`);
 }
+
+export const loginApi=(params)=>{
+    return post(servicePath.login,params);
+}
