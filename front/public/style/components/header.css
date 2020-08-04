@@ -1,9 +1,11 @@
 .header{
     background-color: #fff;
     padding: .4rem;
-    overflow: hidden;
-    height: 3.2rem;
+    /* overflow: hidden; */
+    height: 3.36rem;
     border-bottom:1px solid #eee;
+    margin-bottom:10px;
+    font-weight: 500;
 }
 .header-logo{
     color:#1e90ff;

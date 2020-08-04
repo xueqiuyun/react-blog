@@ -4,7 +4,6 @@ import {Row, Col,Breadcrumb,Affix} from 'antd'
 import Header from '../components/Header'
 import Author from '../components/Author'
 import Footer from '../components/Footer'
-import '../public/style/pages/detail.css'
 //markdown语法高亮
 import marked from 'marked'
 import hljs from "highlight.js";
@@ -13,6 +12,7 @@ import { CalendarOutlined,TagOutlined} from '@ant-design/icons';
 import Tocify from '../components/tocify.tsx';
 import axios from "axios";
 import servicePath from '../config/apiUrl';
+import '../public/style/pages/detail.css';
 const ArticleDetail = (detail) => {
   const data=detail.data;
   const renderer = new marked.Renderer();
